@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>收信人</title>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="css/font/iconfont.css"/>
+<link rel="stylesheet" type="text/css" href="css/mycss.css"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div class="all"></div>
+
+<script type="text/javascript" src="js/receiving.js"></script>
+<script>
+ $(function(){
+    var tostaff = [
+            {"id":"a001", "name":"张三", "num":"14602368", "college":"教育学院1" },
+            {"id":"a002", "name":"李四", "num":"24602368", "college":"教育学院2" },
+            {"id":"a003", "name":"王五", "num":"34602368", "college":"教育学院3" },
+            {"id":"a004", "name":"马六", "num":"44602368", "college":"教育学院4" }
+        ],
+        staff = [
+            {"id":"a001", "name":"张三", "num":"14602368", "college":"教育学院1" },
+            {"id":"a002", "name":"李四", "num":"24602368", "college":"教育学院2" }
+        ],
+		ts = [
+			{'id':'a005','name':'深蓝','num':'1563230','college':'教育学院0'},
+            {'id':'a006','name':'大叔','num':'1563230','college':'艺术学院0'},
+            {'id':'a007','name':'大树','num':'1563230','college':'教育学院0'},
+            {'id':'a008','name':'西施','num':'1563230','college':'艺术学院0'}
+		];
+		
+
+
+    $(".all").receivingmenu({
+        'pagination':{
+            total:6,   // 总记录数
+            pageNo: 1,       // 当前页
+            pageSize: 5      // 每页五条数据
+            },
+        tostaff: tostaff,
+        staff: staff,
+		
+		topage: function(pageNo){
+          console.log(pageNo);
+          this.data({'tostaff': ts});
+        },
+        onSearch: function(content){
+          console.log(content);
+          this.data({'pagination':{
+                          total: 20,
+                          pageNo: 1,
+                          pageSize: 5,
+                      },
+                      'toselected': ts
+                    });
+        },
+		
+		
+		
+		
+		
+		// 搜索
+		search: function(keyword){
+		 console.log(keyword);
+	   }
+    });
+	
+	    
+ });
+</script>
+</body>
+</html>
